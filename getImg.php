@@ -9,8 +9,8 @@ $db = $Dbh->connect();
     }
     if(isset($id)) {
             $sql  = "select artPhoto";
-            $sql .= " from auction";
-            $sql .= " where auctionID = :id";
+            $sql .= "from auction";
+            $sql .= "where auctionID = :id";
         try {
             $q = $dbh->prepare($sql);
             $q->bindValue(':id', $id);
@@ -20,7 +20,6 @@ $db = $Dbh->connect();
             printf("Error getting image.<br/>". $e->getMessage(). '<br/>' . $sql);
             die('');
         }
-
         $out['artPhto'] = stripslashes($out['artPhoto']);
         header("Content-type: image/jpeg");
         echo $out['artPhoto'];

@@ -2,6 +2,7 @@
     session_start();
     require_once './includes/DbConnect.inc.php';
     require_once './includes/Authentication.inc.php';
+    include 'includes/header.inc.php';
     $auth = FALSE;
     $err = '';
 

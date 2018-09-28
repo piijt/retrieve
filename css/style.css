@@ -68,7 +68,6 @@ h3{
 .logo, .join, .my-page, .front-page, .artist, .rights{
     padding:0 5% 0% 5%;
     width:calc(100%/3);
-    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -110,7 +109,7 @@ h4 a{
     flex-direction: row;
     justify-content: space-evenly;
     margin-left:5%;
-    margin-bottom: 10%;
+    margin-bottom: 200px;
 }
 .about{
     max-width: calc(100%/3);
@@ -172,22 +171,24 @@ h6{
     flex-direction: row;
     justify-content: space-evenly;
 }
-
-html, body {
-  height: 100%;
-  margin: 0;
-}
-
 .wrapper {
   min-height: 100%;
+
+  /* Equal to height of footer */
+  /* But also accounting for potential margin-bottom of last child */
   margin-bottom: -50px;
 }
-
 .footer,
 .push {
   height: 50px;
 }
+
 .footer {
   background-color: #f1f1f1;
   padding: 10px;
 }
+
+#text {
+  text-align: justify;
+}
+portfolios

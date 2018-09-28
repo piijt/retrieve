@@ -35,18 +35,18 @@ class Auction {
        $this->endDateTime = $endDateTime;
      }
 
-
+// metode som connecter til database
 	public static function getAuctions(&$arr) {
 		$Dbh = new Dbh();
-
 		$db = $Dbh->connect();
 
-
+    // query som selecter
 		$query="SELECT  auctionID, nameOfArt, artCategory, artDescription, nameOfArtist,
                     startBid, startDateTime, endDateTime FROM auction";
 		$stmt=$db->prepare($query);
 			$stmt->execute();
 
+    // fetcher næste række i databasen og sender det tilbage som et objekt
 		while ($row = $stmt->fetch(PDO::FETCH_OBJ)){
 			$obj = new Auction($row->auctionID
       , $row->nameOfArt
@@ -61,19 +61,49 @@ class Auction {
 		}
 	}
 
-     public function __toString() {
-        $s = sprintf("<p>%s<br />  %s <br /> %s <br /> %s <br /> <img src='getImg.php?id=%d'/> %s <br /> %s <br /> %s </p>",
-                                     // $this->getAuctionID(),
-                                     $this->getNameOfArt(),
-                                     $this->getArtCategory(),
-                                     $this->getArtDescription(),
-                                     $this->getNameOfArtist(),
-                                     $this->getAuctionID(),
-                                     $this->getStartBid(),
-                                     $this->getStartDateTime(),
-                                     $this->getEndDateTime());
+
+    // Printer objektet
+     public function __toString()
+     {
+        $s = sprintf("
+        <br />
+<div class='row'>
+  <div class='col-sm-4'>
+    <div class='block'>
+      <div id='text' class='block-content'>
+            <img src='getImg.php?id=%d'/>
+            <br />
+            Navn: %s
+            <br />
+            Kategori: %s
+            <br/>
+            Beskrivelse: %s
+            <br/>
+            Kunster: %s
+            %s
+            %s
+            <br />
+            Start Bud: %s kr,-
+            <br/>
+            Auktion slutter: %s
+            <br />
+            <button>Byd</button>
+            <p style='text-align:justify  </p>
+        </div>
+      </div>
+    </div>
+  </div ",
+       $this->getAuctionID(),
+       $this->getNameOfArt(),
+       $this->getArtCategory(),
+       $this->getArtDescription(),
+       $this->getNameOfArtist(),
+       $this->getAuctionID(),
+       $this->getStartBid(),
+       $this->getStartDateTime(),
+       $this->getEndDateTime());
             return $s;
-          }
+      }
 
 
      public function getAuctionID()
